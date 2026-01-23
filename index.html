@@ -512,10 +512,14 @@
                             </div>
                         )}
 
-                        {/* Botão Voltar ao Topo */}
+                        {/* Botão Voltar ao Topo Corrigido */}
                         <button 
-                            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                            className="fixed bottom-8 right-8 z-[100] bg-cyan-500 text-[#02111A] w-14 h-14 rounded-full shadow-2xl flex items-center justify-center text-2xl hover:bg-cyan-400 active:scale-90 transition-all md:hidden border-4 border-[#041d2c]"
+                            onClick={() => {
+                                window.scrollTo(0, 0); // Salto imediato para o topo absoluto
+                                document.documentElement.scrollTop = 0; // Força no elemento raiz
+                                document.body.scrollTop = 0; // Força para navegadores antigos
+                            }}
+                            className="fixed bottom-8 right-8 z-[100] bg-cyan-500 text-[#02111A] w-14 h-14 rounded-full shadow-2xl flex items-center justify-center text-2xl active:scale-90 transition-all md:hidden border-4 border-[#041d2c]"
                         >
                             ↑
                         </button>
@@ -804,6 +808,7 @@
 </body>
 
 </html>
+
 
 
 
