@@ -507,6 +507,22 @@
                                 </div>
                             </div>
                         )}
+                        )}
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Botão Voltar ao Topo */}
+                        <button 
+                            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                            className="fixed bottom-8 right-8 z-[100] bg-cyan-500 text-[#02111A] w-14 h-14 rounded-full shadow-2xl flex items-center justify-center text-2xl hover:bg-cyan-400 active:scale-90 transition-all md:hidden border-4 border-[#041d2c]"
+                        >
+                            ↑
+                        </button>
+
+                    </main>
+
+                    {viewObs && (
                     </main>
 
                     {viewObs && (
@@ -792,6 +808,7 @@
 </body>
 
 </html>
+
 
 
 
