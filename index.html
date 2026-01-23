@@ -132,14 +132,7 @@
                 }, 100);
                 return () => clearTimeout(timer);
             }, [view, searchTerm, locFilter, capFilter]);
-
-            const checkConflict = (spaceId, date, start, end, excludeId = null) => {
-                return reservations.some(r => {
-                    if (r.id === excludeId || r.spaceId !== spaceId || r.date !== date || r.status === 'rejeitado') return false;
-                    return (start < r.endTime && end > r.startTime);
-                });
-            };
-
+           
             const checkConflict = (spaceId, date, start, end, excludeId = null) => {
                 return reservations.some(r => {
                     if (r.id === excludeId || r.spaceId !== spaceId || r.date !== date || r.status === 'rejeitado') return false;
@@ -790,4 +783,5 @@
 </body>
 
 </html>
+
 
