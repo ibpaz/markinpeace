@@ -123,18 +123,23 @@
                 db.ref('reservations').on('value', s => setReservations(s.val() ? Object.entries(s.val()).map(([id, v]) => ({id, ...v})) : []));
             }, []);
 
+            // Criamos uma marcação para saber se é a primeira vez que o site abre
+            const [isFirstLoad, setIsFirstLoad] = useState(true);
+
             useEffect(() => {
-                if (view !== 'spaces' || searchTerm !== '' || locFilter !== '' || capFilter !== '') {
-                    const timer = setTimeout(() => {
-                        // Buscamos o alvo que marcamos no Passo 1
-                        const elemento = document.getElementById('conteudo-principal');
-                        if (elemento) {
-                            // O navegador calcula a altura exata da aba atual e rola até ela
-                            elemento.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        }
-                    }, 150);
-                    return () => clearTimeout(timer);
+                // Se for a primeira vez, apenas avisamos que já carregou e não rolamos
+                if (isFirstLoad) {
+                    setIsFirstLoad(false);
+                    return;
                 }
+
+                const timer = setTimeout(() => {
+                    const elemento = document.getElementById('conteudo-principal');
+                    if (elemento) {
+                        elemento.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }, 150);
+                return () => clearTimeout(timer);
             }, [view, searchTerm, locFilter, capFilter]);
            
             const checkConflict = (spaceId, date, start, end, excludeId = null) => {
@@ -787,6 +792,7 @@
 </body>
 
 </html>
+
 
 
 
