@@ -127,19 +127,23 @@
             const [isFirstLoad, setIsFirstLoad] = useState(true);
 
             useEffect(() => {
-                // Se for a primeira vez, apenas avisamos que já carregou e não rolamos
+                // Se for a primeira carga, não faz nada
                 if (isFirstLoad) {
                     setIsFirstLoad(false);
                     return;
                 }
 
-                const timer = setTimeout(() => {
-                    const elemento = document.getElementById('conteudo-principal');
-                    if (elemento) {
-                        elemento.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
-                }, 150);
-                return () => clearTimeout(timer);
+                // Só executa o scroll automático se a página estiver perto do topo
+                // Se o usuário já estiver lá no alto, a gente não "força" a descida
+                if (window.scrollY < 100 || (searchTerm || locFilter || capFilter)) {
+                    const timer = setTimeout(() => {
+                        const elemento = document.getElementById('conteudo-principal');
+                        if (elemento) {
+                            elemento.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    }, 150);
+                    return () => clearTimeout(timer);
+                }
             }, [view, searchTerm, locFilter, capFilter]);
            
             const checkConflict = (spaceId, date, start, end, excludeId = null) => {
@@ -800,6 +804,7 @@
 </body>
 
 </html>
+
 
 
 
