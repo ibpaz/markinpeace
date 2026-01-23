@@ -124,14 +124,14 @@
             }, []);
 
             useEffect(() => {
-                // Só dispara o scroll se NÃO for a primeira vez que a tela carrega
-                // ou se o usuário mudar a aba/filtros manualmente
                 if (view !== 'spaces' || searchTerm !== '' || locFilter !== '' || capFilter !== '') {
                     const timer = setTimeout(() => {
-                        window.scrollTo({
-                            top: 880, // Aumentamos para descer mais a tela
-                            behavior: 'smooth'
-                        });
+                        // Buscamos o alvo que marcamos no Passo 1
+                        const elemento = document.getElementById('conteudo-principal');
+                        if (elemento) {
+                            // O navegador calcula a altura exata da aba atual e rola até ela
+                            elemento.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
                     }, 150);
                     return () => clearTimeout(timer);
                 }
@@ -185,7 +185,7 @@
                         <button onClick={onLogout} className="text-left py-4 font-black text-red-400 text-[10px] uppercase">Sair 🚪</button>
                     </nav>
 
-                    <main className="flex-1 p-5 md:p-12 overflow-auto">
+                    <main id="conteudo-principal" className="flex-1 p-5 md:p-12 overflow-auto">
                         {view === 'spaces' && (
                 <div className="space-y-8">
                     <div className="flex flex-col gap-6">
@@ -787,6 +787,7 @@
 </body>
 
 </html>
+
 
 
 
