@@ -124,13 +124,17 @@
             }, []);
 
             useEffect(() => {
-                const timer = setTimeout(() => {
-                    window.scrollTo({
-                        top: 350, 
-                        behavior: 'smooth'
-                    });
-                }, 100);
-                return () => clearTimeout(timer);
+                // Só dispara o scroll se NÃO for a primeira vez que a tela carrega
+                // ou se o usuário mudar a aba/filtros manualmente
+                if (view !== 'spaces' || searchTerm !== '' || locFilter !== '' || capFilter !== '') {
+                    const timer = setTimeout(() => {
+                        window.scrollTo({
+                            top: 550, // Aumentamos para descer mais a tela
+                            behavior: 'smooth'
+                        });
+                    }, 150);
+                    return () => clearTimeout(timer);
+                }
             }, [view, searchTerm, locFilter, capFilter]);
            
             const checkConflict = (spaceId, date, start, end, excludeId = null) => {
@@ -783,5 +787,6 @@
 </body>
 
 </html>
+
 
 
