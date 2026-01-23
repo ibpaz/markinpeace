@@ -500,14 +500,7 @@
                                                         askZap(r.requesterPhone, `Sua reserva para ${r.eventTitle} foi APROVADA!`, () => db.ref('reservations/'+r.id).update({status:'aprovado'})); 
                                                     }} className="bg-blue-600 px-6 py-3 rounded-xl text-[10px] font-black uppercase">Aprovar</button>
                                                     <button onClick={() => setRejectModal(r)} className="bg-red-900/30 text-red-500 px-6 py-3 rounded-xl text-[10px] font-black uppercase">Recusar</button>
-                                                </div>
-                                            </div>
-                                        ))
-                                    )}
-                                </div>
-                            </div>
-                        )}
-                        )}
+                                                <)}
                                 </div>
                             </div>
                         )}
@@ -519,7 +512,6 @@
                         >
                             ↑
                         </button>
-
                     </main>
 
                     {viewObs && (
@@ -805,6 +797,7 @@
 </body>
 
 </html>
+
 
 
 
