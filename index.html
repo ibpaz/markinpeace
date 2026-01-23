@@ -523,9 +523,6 @@
                     </main>
 
                     {viewObs && (
-                    </main>
-
-                    {viewObs && (
                         <Modal title={`Observações: ${viewObs.name}`} onClose={() => setViewObs(null)}>
                             <div className="space-y-3">
                                 {viewObs.observations.split(',').map((o, i) => (
@@ -808,6 +805,7 @@
 </body>
 
 </html>
+
 
 
 
