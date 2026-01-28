@@ -241,7 +241,7 @@
                                     <div key={s.id} className="card-round flex flex-col group hover:border-cyan-500/50 transition-all duration-500">
                                         <div className="relative h-64 overflow-hidden rounded-t-[3rem]">
                                             <div className="absolute top-5 left-5 z-10"><span className="tag-infra !bg-cyan-600/80 backdrop-blur-md">{s.location || 'Geral'}</span></div>
-                                            <div className="absolute top-5 right-5 z-10"><span className="tag-cap">Lotação: {s.capacity}</span></div>
+                                            <div className="absolute top-5 right-5 z-10"><span className="tag-cap">Cap.: {s.capacity}</span></div>
                                             <img src={s.imageUrl} className="w-full h-full object-cover brightness-75 group-hover:scale-110 transition-transform duration-700" />
                                             {s.observations && <div className="btn-obs-float" onClick={() => setViewObs(s)}>!</div>}
                                         </div>
@@ -808,6 +808,7 @@
 </body>
 
 </html>
+
 
 
 
