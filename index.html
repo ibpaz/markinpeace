@@ -49,12 +49,17 @@
     <div id="root"></div>
 
     <script>
+        // Configura o Babel globalmente para usar o método clássico do React antes de compilar
+        window.Babel.setPresetOptions('react', {
+            runtime: 'classic'
+        });
+
         window.Babel.registerPlugin('disable-modules', function() {
             return { visitor: { Program(path) { path.node.sourceType = "script"; } } };
         });
     </script>
 
-    <script type="text/babel" data-plugins="disable-modules">
+    <script type="text/babel" data-presets="react" data-plugins="disable-modules">
         const { useState, useEffect, useMemo } = React;
         const firebaseConfig = {
             apiKey: "AIzaSyDCTa_bpwdcIaHWr15P5rp41HOyaqv2MeA",
