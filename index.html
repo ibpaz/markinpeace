@@ -730,18 +730,42 @@
         const App = () => {
             const [user, setUser] = useState(null);
             const [loading, setLoading] = useState(true);
-            useEffect(() => { return auth.onAuthStateChanged(async (u) => { 
-                if (u) { const s = await db.ref('users/'+u.uid).once('value'); const d = s.val(); 
-                    if (u.email === "adminmestreibpaz@igreja.com" || (d && d.status === 'aprovado')) setUser({ id: u.uid, ...d, email: u.email }); 
-                    else { alert("Aguarde aprovação."); auth.signOut(); } 
-                } else setUser(null); setLoading(false); }); 
+
+            useEffect(() => {
+                const unsubscribe = auth.onAuthStateChanged(async (u) => { 
+                    try {
+                        if (u) { 
+                            const s = await db.ref('users/'+u.uid).once('value'); 
+                            const d = s.val(); 
+                            if (u.email === "adminmestreibpaz@igreja.com" || (d && d.status === 'aprovado')) {
+                                setUser({ id: u.uid, ...d, email: u.email }); 
+                            } else { 
+                                alert("Aguarde aprovação."); 
+                                auth.signOut(); 
+                            } 
+                        } else {
+                            setUser(null); 
+                        }
+                    } catch (e) {
+                        console.error(e);
+                    } finally {
+                        setLoading(false); 
+                    }
+                }); 
+                return () => unsubscribe();
             }, []);
+
             if (loading) return (
                 <div className="h-screen bg-[#02111a] flex flex-col items-center justify-center gap-6">
                     <img src="logo.png" alt="Loading..." className="w-48 h-auto animate-pulse" />
                     <div className="w-32 h-1 bg-white/5 rounded-full overflow-hidden">
                         <div className="h-full bg-cyan-400 animate-[loading_1.5s_ease-in-out_infinite]"></div>
                     </div>
+                </div>
+            );
+
+            return user ? React.createElement(Dashboard, { user: user, onLogout: () => auth.signOut() }) : React.createElement(Auth);
+        };
                     <style>{`
                         @keyframes loading {
                             0% { width: 0%; transform: translateX(-100%); }
