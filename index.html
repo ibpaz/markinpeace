@@ -764,10 +764,14 @@
                 </div>
             );
 
-            return user ? React.createElement(Dashboard, { user: user, onLogout: () => auth.signOut() }) : React.createElement(Auth);
+            // Renderização pura e direta compatível com o CDN clássico
+            return user 
+                ? React.createElement(Dashboard, { user: user, onLogout: () => auth.signOut() }) 
+                : React.createElement(Auth, null);
         };
 
-        ReactDOM.render(React.createElement(App), document.getElementById('root'));
+        // Inicialização clássica final
+        ReactDOM.render(React.createElement(App, null), document.getElementById('root'));
     </script>
 </body>
 </html>
