@@ -50,9 +50,6 @@
 
     <script type="text/babel">
         const { useState, useEffect, useMemo } = React;
-
-    <script type="text/babel" data-presets="react" data-plugins="disable-modules">
-        const { useState, useEffect, useMemo } = React;
         const firebaseConfig = {
             apiKey: "AIzaSyDCTa_bpwdcIaHWr15P5rp41HOyaqv2MeA",
             authDomain: "markinpeace-a2f54.firebaseapp.com",
