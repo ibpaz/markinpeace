@@ -766,17 +766,6 @@
 
             return user ? React.createElement(Dashboard, { user: user, onLogout: () => auth.signOut() }) : React.createElement(Auth);
         };
-                    <style>{`
-                        @keyframes loading {
-                            0% { width: 0%; transform: translateX(-100%); }
-                            50% { width: 100%; transform: translateX(0%); }
-                            100% { width: 0%; transform: translateX(100%); }
-                        }
-                    `}</style>
-                </div>
-            );
-            return user ? <Dashboard user={user} onLogout={() => auth.signOut()} /> : <Auth />;
-        };
 
         ReactDOM.render(React.createElement(App), document.getElementById('root'));
     </script>
