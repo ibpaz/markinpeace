@@ -236,7 +236,7 @@
                                                     </div>
                                                     <div className="p-8 flex-1 flex flex-col">
                                                         <h3 className="text-2xl font-black uppercase mb-4 tracking-tighter">{s.name}</h3>
-                                                        <div className="flex flex-wrap gap-2 mb-6">{s.infra?.split(',').map((item, idx) => <span key={idx} className="tag-infra">{item.trim()}</span>)}</div>
+                                                        <div className="flex flex-wrap gap-2 mb-6">{s.infra.split(',').map((item, idx) => <span key={idx} className="tag-infra">{item.trim()}</span>)}</div>
                                                         <div className="mb-8 p-6 bg-[#0a3d5c]/60 rounded-[2rem] border border-cyan-900/30 flex-1">
                                                             <p className="text-[10px] font-black text-cyan-400 uppercase mb-4 tracking-widest">Próximas Marcações:</p>
                                                             {next.length > 0 ? next.map(nt => (
