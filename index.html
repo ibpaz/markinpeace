@@ -48,7 +48,13 @@
 <body>
     <div id="root"></div>
 
-    <script type="text/babel" data-presets="react,stage-2" data-plugins="">
+    <script>
+        window.Babel.registerPlugin('disable-modules', function() {
+            return { visitor: { Program(path) { path.node.sourceType = "script"; } } };
+        });
+    </script>
+
+    <script type="text/babel" data-plugins="disable-modules">
         const { useState, useEffect, useMemo } = React;
         const firebaseConfig = {
             apiKey: "AIzaSyDCTa_bpwdcIaHWr15P5rp41HOyaqv2MeA",
