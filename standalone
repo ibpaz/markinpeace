@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.12/babel.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
@@ -48,16 +48,8 @@
 <body>
     <div id="root"></div>
 
-    <script>
-        // Configura o Babel globalmente para usar o método clássico do React antes de compilar
-        window.Babel.setPresetOptions('react', {
-            runtime: 'classic'
-        });
-
-        window.Babel.registerPlugin('disable-modules', function() {
-            return { visitor: { Program(path) { path.node.sourceType = "script"; } } };
-        });
-    </script>
+    <script type="text/babel">
+        const { useState, useEffect, useMemo } = React;
 
     <script type="text/babel" data-presets="react" data-plugins="disable-modules">
         const { useState, useEffect, useMemo } = React;
