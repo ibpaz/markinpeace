@@ -754,7 +754,7 @@
             return user ? <Dashboard user={user} onLogout={() => auth.signOut()} /> : <Auth />;
         };
 
-        ReactDOM.render(<App />, document.getElementById('root'));
+        ReactDOM.render(React.createElement(App), document.getElementById('root'));
     </script>
 </body>
 </html>
